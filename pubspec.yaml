@@ -1,0 +1,32 @@
+name: isar_contacts_sample
+description: This is a Flutter Project to explain how to create ContactsList app using isar.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.2 <3.0.0'
+
+# Isarで使用するversionを定義
+isar_version: &isar_version 3.0.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  isar: *isar_version
+  isar_flutter_libs: *isar_version
+  flutter_riverpod: ^2.0.0-dev.9
+  path_provider: ^2.0.11
+  copy_with_extension: ^4.0.4
+
+dev_dependencies:
+  build_runner: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  isar_generator: *isar_version
+  copy_with_extension_gen: ^4.0.4
+
+
+
+flutter:
+  uses-material-design: true
