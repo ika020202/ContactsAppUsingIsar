@@ -30,22 +30,18 @@ class ContactsRepository {
   }
 
   // 削除
-  void delete(Contact contact) {
-    isar.writeTxnSync(() => isar.contacts.delete(contact.id));
+  void delete(Contact contact) async {
+    print(contact.id);
+    //isar.writeTxnSync(() => isar.contacts.delete(contact.id!));
+
+    await isar.writeTxn(() async {
+      final success = await isar.contacts.delete(contact.id!);
+      print(success);
+    });
   }
 
   // データの取得(星印)
   Future<List<Contact>> queryOfStared() async {
     return await isar.contacts.filter().isStaredEqualTo(true).findAll();
   }
-
-  // 初期設定
-  /*
-  void openDB() async {
-    final dir = await getApplicationSupportDirectory();
-    isar =
-        await Isar.open([ContactSchema], directory: dir.path, inspector: true);
-    print("コンストラクタ起動");
-  }
-  */
 }

@@ -7,7 +7,7 @@ environment:
   sdk: '>=2.18.2 <3.0.0'
 
 # Isarで使用するversionを定義
-isar_version: &isar_version 3.0.2
+isar_version: &isar_version 3.0.5
 
 dependencies:
   flutter:
@@ -24,7 +24,6 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   isar_generator: *isar_version
-  copy_with_extension_gen: ^4.0.4
 
 
 

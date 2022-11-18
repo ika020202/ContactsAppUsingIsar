@@ -3,7 +3,7 @@ import 'package:isar_contacts_sample/application/contacts_app_service.dart';
 import 'package:isar_contacts_sample/models/contact.dart';
 
 final contactDetailProvider =
-    StateNotifierProvider.autoDispose<ContactDetailNotifier, Contact>((ref) {
+    StateNotifierProvider<ContactDetailNotifier, Contact>((ref) {
   return ContactDetailNotifier(
     contactsAppService: ref.read(contactsAppService),
   );
@@ -15,18 +15,14 @@ class ContactDetailNotifier extends StateNotifier<Contact> {
   ContactDetailNotifier({
     required ContactsAppService contactsAppService,
   })  : _contactsAppService = contactsAppService,
-        super(const Contact());
+        super(Contact());
 
   void setContact(Contact contact) {
     state = contact.copyWith();
   }
 
-  void changeFirstName(String firstname) {
-    state = state.copyWith(firstName: firstname);
-  }
-
-  void changeLastName(String lastname) {
-    state = state.copyWith(lastName: lastname);
+  void changeName(String name) {
+    state = state.copyWith(name: name);
   }
 
   void changePhoneNo(String phoneNo) {
@@ -34,18 +30,30 @@ class ContactDetailNotifier extends StateNotifier<Contact> {
   }
 
   void changeCountryName(String countryName) {
-    state = state.copyWith(address: Address(countryName: countryName));
+    state = state.copyWith(
+        address: Address(
+            countryName: countryName, zipcode: state.address?.zipcode ?? ""));
   }
 
   void changeZipcode(String zipcode) {
-    state = state.copyWith(address: Address(zipcode: zipcode));
+    state = state.copyWith(
+        address: Address(
+            zipcode: zipcode, countryName: state.address?.countryName ?? ""));
   }
 
   void changeGenderForm(Gender gender) {
     state = state.copyWith(gender: gender);
   }
 
+  void initContact() {
+    state = Contact();
+  }
+
   void onPressedSaveButton() {
     _contactsAppService.saveOrUpdateContact(contact: state);
+  }
+
+  void onPressedDeleteButton() {
+    _contactsAppService.deleteContact(contact: state);
   }
 }

@@ -1,27 +1,21 @@
-import 'package:meta/meta.dart';
 import 'package:isar/isar.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
 
 part 'contact.g.dart';
 
-@immutable
-@CopyWith()
 @Collection()
 class Contact {
-  const Contact({
-    this.firstName = "",
-    this.lastName = "",
+  Contact({
+    this.name = "",
     this.phoneNo = "",
-    this.gender = Gender.none,
+    this.gender = Gender.SelectGender,
     this.address,
     this.isStared,
-  }) : id = Isar.autoIncrement;
+    this.id,
+  });
 
-  final Id id;
+  Id? id;
 
-  final String firstName;
-
-  final String lastName;
+  final String name;
 
   final String phoneNo;
 
@@ -31,15 +25,32 @@ class Contact {
   final Address? address;
 
   final bool? isStared;
+
+  Contact copyWith({
+    Id? id,
+    String? name,
+    String? phoneNo,
+    Gender? gender,
+    Address? address,
+    bool? isStared,
+  }) {
+    return Contact(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        phoneNo: phoneNo ?? this.phoneNo,
+        gender: gender ?? this.gender,
+        address: address ?? this.address,
+        isStared: isStared ?? this.isStared);
+  }
 }
 
 @embedded
 class Address {
-  Address({this.countryName = "unknown", this.zipcode = "0000000"});
+  Address({this.countryName = "", this.zipcode = ""});
 
   final String? countryName;
 
   final String? zipcode;
 }
 
-enum Gender { male, female, other, declineToState, none }
+enum Gender { Male, Female, Other, DeclineToState, SelectGender }

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar_contacts_sample/application/contacts_app_service.dart';
 import 'package:isar_contacts_sample/models/contact.dart';
-import 'package:isar_contacts_sample/presentation/contact_detail_notifier.dart';
+import 'package:isar_contacts_sample/presentation/contacts_detail_notifier.dart';
 import 'package:isar_contacts_sample/screens/contacts_detail_page.dart';
+
+import '../screens/contacts_view_page.dart';
 
 final contactsListProvider =
     StateNotifierProvider<ContactsListNotifier, List<Contact>>(
@@ -25,14 +27,6 @@ class ContactsListNotifier extends StateNotifier<List<Contact>> {
   }
 
   void _contactsHaveUpdated(List<Contact> contactsList) {
-    // ちょっとテストが必要
-    var test1 = contactsList;
-    var test2 = contactsList
-        .map((contact) => contact.copyWith(firstName: "ディープこーぴー"))
-        .toList();
-    print(contactsList);
-    print(test1);
-    print(test2);
     state = contactsList.map((contact) => contact.copyWith()).toList();
   }
 
@@ -41,13 +35,13 @@ class ContactsListNotifier extends StateNotifier<List<Contact>> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => const ContactsDetailPage(),
+        builder: (BuildContext context) => const ContactsViewPage(),
       ),
     );
   }
 
   void onTapFAB(BuildContext context, WidgetRef ref) {
-    //ref.read(todoItemProvider.notifier).reset();
+    ref.read(contactDetailProvider.notifier).initContact();
     Navigator.push(
       context,
       MaterialPageRoute(

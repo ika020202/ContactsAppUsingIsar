@@ -3,114 +3,6 @@
 part of 'contact.dart';
 
 // **************************************************************************
-// CopyWithGenerator
-// **************************************************************************
-
-abstract class _$ContactCWProxy {
-  Contact address(Address? address);
-
-  Contact firstName(String firstName);
-
-  Contact gender(Gender gender);
-
-  Contact isStared(bool? isStared);
-
-  Contact lastName(String lastName);
-
-  Contact phoneNo(String phoneNo);
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Contact(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
-  ///
-  /// Usage
-  /// ```dart
-  /// Contact(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Contact call({
-    Address? address,
-    String? firstName,
-    Gender? gender,
-    bool? isStared,
-    String? lastName,
-    String? phoneNo,
-  });
-}
-
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfContact.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfContact.copyWith.fieldName(...)`
-class _$ContactCWProxyImpl implements _$ContactCWProxy {
-  final Contact _value;
-
-  const _$ContactCWProxyImpl(this._value);
-
-  @override
-  Contact address(Address? address) => this(address: address);
-
-  @override
-  Contact firstName(String firstName) => this(firstName: firstName);
-
-  @override
-  Contact gender(Gender gender) => this(gender: gender);
-
-  @override
-  Contact isStared(bool? isStared) => this(isStared: isStared);
-
-  @override
-  Contact lastName(String lastName) => this(lastName: lastName);
-
-  @override
-  Contact phoneNo(String phoneNo) => this(phoneNo: phoneNo);
-
-  @override
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Contact(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
-  ///
-  /// Usage
-  /// ```dart
-  /// Contact(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Contact call({
-    Object? address = const $CopyWithPlaceholder(),
-    Object? firstName = const $CopyWithPlaceholder(),
-    Object? gender = const $CopyWithPlaceholder(),
-    Object? isStared = const $CopyWithPlaceholder(),
-    Object? lastName = const $CopyWithPlaceholder(),
-    Object? phoneNo = const $CopyWithPlaceholder(),
-  }) {
-    return Contact(
-      address: address == const $CopyWithPlaceholder()
-          ? _value.address
-          // ignore: cast_nullable_to_non_nullable
-          : address as Address?,
-      firstName: firstName == const $CopyWithPlaceholder() || firstName == null
-          ? _value.firstName
-          // ignore: cast_nullable_to_non_nullable
-          : firstName as String,
-      gender: gender == const $CopyWithPlaceholder() || gender == null
-          ? _value.gender
-          // ignore: cast_nullable_to_non_nullable
-          : gender as Gender,
-      isStared: isStared == const $CopyWithPlaceholder()
-          ? _value.isStared
-          // ignore: cast_nullable_to_non_nullable
-          : isStared as bool?,
-      lastName: lastName == const $CopyWithPlaceholder() || lastName == null
-          ? _value.lastName
-          // ignore: cast_nullable_to_non_nullable
-          : lastName as String,
-      phoneNo: phoneNo == const $CopyWithPlaceholder() || phoneNo == null
-          ? _value.phoneNo
-          // ignore: cast_nullable_to_non_nullable
-          : phoneNo as String,
-    );
-  }
-}
-
-extension $ContactCopyWith on Contact {
-  /// Returns a callable class that can be used as follows: `instanceOfContact.copyWith(...)` or like so:`instanceOfContact.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ContactCWProxy get copyWith => _$ContactCWProxyImpl(this);
-}
-
-// **************************************************************************
 // IsarCollectionGenerator
 // **************************************************************************
 
@@ -131,29 +23,24 @@ const ContactSchema = CollectionSchema(
       type: IsarType.object,
       target: r'Address',
     ),
-    r'firstName': PropertySchema(
-      id: 1,
-      name: r'firstName',
-      type: IsarType.string,
-    ),
     r'gender': PropertySchema(
-      id: 2,
+      id: 1,
       name: r'gender',
       type: IsarType.string,
       enumMap: _ContactgenderEnumValueMap,
     ),
     r'isStared': PropertySchema(
-      id: 3,
+      id: 2,
       name: r'isStared',
       type: IsarType.bool,
     ),
-    r'lastName': PropertySchema(
-      id: 4,
-      name: r'lastName',
+    r'name': PropertySchema(
+      id: 3,
+      name: r'name',
       type: IsarType.string,
     ),
     r'phoneNo': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'phoneNo',
       type: IsarType.string,
     )
@@ -169,7 +56,7 @@ const ContactSchema = CollectionSchema(
   getId: _contactGetId,
   getLinks: _contactGetLinks,
   attach: _contactAttach,
-  version: '3.0.2',
+  version: '3.0.5',
 );
 
 int _contactEstimateSize(
@@ -185,9 +72,8 @@ int _contactEstimateSize(
           AddressSchema.estimateSize(value, allOffsets[Address]!, allOffsets);
     }
   }
-  bytesCount += 3 + object.firstName.length * 3;
   bytesCount += 3 + object.gender.name.length * 3;
-  bytesCount += 3 + object.lastName.length * 3;
+  bytesCount += 3 + object.name.length * 3;
   bytesCount += 3 + object.phoneNo.length * 3;
   return bytesCount;
 }
@@ -204,11 +90,10 @@ void _contactSerialize(
     AddressSchema.serialize,
     object.address,
   );
-  writer.writeString(offsets[1], object.firstName);
-  writer.writeString(offsets[2], object.gender.name);
-  writer.writeBool(offsets[3], object.isStared);
-  writer.writeString(offsets[4], object.lastName);
-  writer.writeString(offsets[5], object.phoneNo);
+  writer.writeString(offsets[1], object.gender.name);
+  writer.writeBool(offsets[2], object.isStared);
+  writer.writeString(offsets[3], object.name);
+  writer.writeString(offsets[4], object.phoneNo);
 }
 
 Contact _contactDeserialize(
@@ -223,12 +108,12 @@ Contact _contactDeserialize(
       AddressSchema.deserialize,
       allOffsets,
     ),
-    firstName: reader.readStringOrNull(offsets[1]) ?? "",
-    gender: _ContactgenderValueEnumMap[reader.readStringOrNull(offsets[2])] ??
-        Gender.none,
-    isStared: reader.readBoolOrNull(offsets[3]),
-    lastName: reader.readStringOrNull(offsets[4]) ?? "",
-    phoneNo: reader.readStringOrNull(offsets[5]) ?? "",
+    gender: _ContactgenderValueEnumMap[reader.readStringOrNull(offsets[1])] ??
+        Gender.SelectGender,
+    id: id,
+    isStared: reader.readBoolOrNull(offsets[2]),
+    name: reader.readStringOrNull(offsets[3]) ?? "",
+    phoneNo: reader.readStringOrNull(offsets[4]) ?? "",
   );
   return object;
 }
@@ -247,15 +132,13 @@ P _contactDeserializeProp<P>(
         allOffsets,
       )) as P;
     case 1:
-      return (reader.readStringOrNull(offset) ?? "") as P;
-    case 2:
       return (_ContactgenderValueEnumMap[reader.readStringOrNull(offset)] ??
-          Gender.none) as P;
-    case 3:
+          Gender.SelectGender) as P;
+    case 2:
       return (reader.readBoolOrNull(offset)) as P;
-    case 4:
+    case 3:
       return (reader.readStringOrNull(offset) ?? "") as P;
-    case 5:
+    case 4:
       return (reader.readStringOrNull(offset) ?? "") as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -263,29 +146,31 @@ P _contactDeserializeProp<P>(
 }
 
 const _ContactgenderEnumValueMap = {
-  r'male': r'male',
-  r'female': r'female',
-  r'other': r'other',
-  r'declineToState': r'declineToState',
-  r'none': r'none',
+  r'Male': r'Male',
+  r'Female': r'Female',
+  r'Other': r'Other',
+  r'DeclineToState': r'DeclineToState',
+  r'SelectGender': r'SelectGender',
 };
 const _ContactgenderValueEnumMap = {
-  r'male': Gender.male,
-  r'female': Gender.female,
-  r'other': Gender.other,
-  r'declineToState': Gender.declineToState,
-  r'none': Gender.none,
+  r'Male': Gender.Male,
+  r'Female': Gender.Female,
+  r'Other': Gender.Other,
+  r'DeclineToState': Gender.DeclineToState,
+  r'SelectGender': Gender.SelectGender,
 };
 
 Id _contactGetId(Contact object) {
-  return object.id;
+  return object.id ?? Isar.autoIncrement;
 }
 
 List<IsarLinkBase<dynamic>> _contactGetLinks(Contact object) {
   return [];
 }
 
-void _contactAttach(IsarCollection<dynamic> col, Id id, Contact object) {}
+void _contactAttach(IsarCollection<dynamic> col, Id id, Contact object) {
+  object.id = id;
+}
 
 extension ContactQueryWhereSort on QueryBuilder<Contact, Contact, QWhere> {
   QueryBuilder<Contact, Contact, QAfterWhere> anyId() {
@@ -376,136 +261,6 @@ extension ContactQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'address',
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'firstName',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'firstName',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'firstName',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'firstName',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'firstName',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'firstName',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'firstName',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'firstName',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'firstName',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> firstNameIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'firstName',
-        value: '',
       ));
     });
   }
@@ -640,7 +395,23 @@ extension ContactQueryFilter
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> idEqualTo(Id value) {
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> idIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> idIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -650,7 +421,7 @@ extension ContactQueryFilter
   }
 
   QueryBuilder<Contact, Contact, QAfterFilterCondition> idGreaterThan(
-    Id value, {
+    Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -663,7 +434,7 @@ extension ContactQueryFilter
   }
 
   QueryBuilder<Contact, Contact, QAfterFilterCondition> idLessThan(
-    Id value, {
+    Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -676,8 +447,8 @@ extension ContactQueryFilter
   }
 
   QueryBuilder<Contact, Contact, QAfterFilterCondition> idBetween(
-    Id lower,
-    Id upper, {
+    Id? lower,
+    Id? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -718,20 +489,20 @@ extension ContactQueryFilter
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameEqualTo(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'lastName',
+        property: r'name',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameGreaterThan(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -739,14 +510,14 @@ extension ContactQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'lastName',
+        property: r'name',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameLessThan(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -754,14 +525,14 @@ extension ContactQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'lastName',
+        property: r'name',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameBetween(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -770,7 +541,7 @@ extension ContactQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'lastName',
+        property: r'name',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -780,69 +551,69 @@ extension ContactQueryFilter
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameStartsWith(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'lastName',
+        property: r'name',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameEndsWith(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'lastName',
+        property: r'name',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameContains(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'lastName',
+        property: r'name',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameMatches(
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'lastName',
+        property: r'name',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameIsEmpty() {
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'lastName',
+        property: r'name',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> lastNameIsNotEmpty() {
+  QueryBuilder<Contact, Contact, QAfterFilterCondition> nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'lastName',
+        property: r'name',
         value: '',
       ));
     });
@@ -993,18 +764,6 @@ extension ContactQueryLinks
     on QueryBuilder<Contact, Contact, QFilterCondition> {}
 
 extension ContactQuerySortBy on QueryBuilder<Contact, Contact, QSortBy> {
-  QueryBuilder<Contact, Contact, QAfterSortBy> sortByFirstName() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'firstName', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterSortBy> sortByFirstNameDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'firstName', Sort.desc);
-    });
-  }
-
   QueryBuilder<Contact, Contact, QAfterSortBy> sortByGender() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'gender', Sort.asc);
@@ -1029,15 +788,15 @@ extension ContactQuerySortBy on QueryBuilder<Contact, Contact, QSortBy> {
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterSortBy> sortByLastName() {
+  QueryBuilder<Contact, Contact, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastName', Sort.asc);
+      return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterSortBy> sortByLastNameDesc() {
+  QueryBuilder<Contact, Contact, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastName', Sort.desc);
+      return query.addSortBy(r'name', Sort.desc);
     });
   }
 
@@ -1056,18 +815,6 @@ extension ContactQuerySortBy on QueryBuilder<Contact, Contact, QSortBy> {
 
 extension ContactQuerySortThenBy
     on QueryBuilder<Contact, Contact, QSortThenBy> {
-  QueryBuilder<Contact, Contact, QAfterSortBy> thenByFirstName() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'firstName', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterSortBy> thenByFirstNameDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'firstName', Sort.desc);
-    });
-  }
-
   QueryBuilder<Contact, Contact, QAfterSortBy> thenByGender() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'gender', Sort.asc);
@@ -1104,15 +851,15 @@ extension ContactQuerySortThenBy
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterSortBy> thenByLastName() {
+  QueryBuilder<Contact, Contact, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastName', Sort.asc);
+      return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterSortBy> thenByLastNameDesc() {
+  QueryBuilder<Contact, Contact, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastName', Sort.desc);
+      return query.addSortBy(r'name', Sort.desc);
     });
   }
 
@@ -1131,13 +878,6 @@ extension ContactQuerySortThenBy
 
 extension ContactQueryWhereDistinct
     on QueryBuilder<Contact, Contact, QDistinct> {
-  QueryBuilder<Contact, Contact, QDistinct> distinctByFirstName(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'firstName', caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<Contact, Contact, QDistinct> distinctByGender(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1151,10 +891,10 @@ extension ContactQueryWhereDistinct
     });
   }
 
-  QueryBuilder<Contact, Contact, QDistinct> distinctByLastName(
+  QueryBuilder<Contact, Contact, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'lastName', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
     });
   }
 
@@ -1180,12 +920,6 @@ extension ContactQueryProperty
     });
   }
 
-  QueryBuilder<Contact, String, QQueryOperations> firstNameProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'firstName');
-    });
-  }
-
   QueryBuilder<Contact, Gender, QQueryOperations> genderProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'gender');
@@ -1198,9 +932,9 @@ extension ContactQueryProperty
     });
   }
 
-  QueryBuilder<Contact, String, QQueryOperations> lastNameProperty() {
+  QueryBuilder<Contact, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'lastName');
+      return query.addPropertyName(r'name');
     });
   }
 
