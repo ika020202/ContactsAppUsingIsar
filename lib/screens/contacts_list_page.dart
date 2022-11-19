@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:isar_contacts_sample/presentation/contacts_detail_notifier.dart';
 import 'package:isar_contacts_sample/presentation/contacts_list_notifier.dart';
 
 class ContactsListPage extends ConsumerWidget {
@@ -9,6 +10,7 @@ class ContactsListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(contactsListProvider);
     final notifier = ref.read(contactsListProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -30,8 +32,15 @@ class ContactsListPage extends ConsumerWidget {
                             fontSize: 26, color: Colors.white60),
                       ),
                     ),
-                    // TODO スター機能を入れる
-                    trailing: const Icon(Icons.star, color: Colors.indigo),
+                    trailing: IconButton(
+                      color: Colors.indigo,
+                      icon: item.isStared == true
+                          ? const Icon(Icons.star)
+                          : const Icon(Icons.star_border),
+                      onPressed: () {
+                        notifier.onTapStar(item, item.isStared);
+                      },
+                    ),
                     title: RichText(
                       text: TextSpan(
                         text: item.name,

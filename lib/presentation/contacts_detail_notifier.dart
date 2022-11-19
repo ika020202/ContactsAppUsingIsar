@@ -17,6 +17,10 @@ class ContactDetailNotifier extends StateNotifier<Contact> {
   })  : _contactsAppService = contactsAppService,
         super(Contact());
 
+  void initContact() {
+    state = Contact();
+  }
+
   void setContact(Contact contact) {
     state = contact.copyWith();
   }
@@ -45,8 +49,9 @@ class ContactDetailNotifier extends StateNotifier<Contact> {
     state = state.copyWith(gender: gender);
   }
 
-  void initContact() {
-    state = Contact();
+  void changeIsStared(bool isStared) {
+    state = state.copyWith(isStared: isStared);
+    _contactsAppService.saveOrUpdateContact(contact: state);
   }
 
   void onPressedSaveButton() {

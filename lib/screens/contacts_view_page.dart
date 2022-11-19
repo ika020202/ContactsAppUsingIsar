@@ -10,6 +10,8 @@ class ContactsViewPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(contactDetailProvider);
+    final notifier = ref.watch(contactDetailProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -24,16 +26,15 @@ class ContactsViewPage extends ConsumerWidget {
         ),
         elevation: 0,
         actions: <Widget>[
-          /*
           IconButton(
             color: Colors.white,
-            icon: TODO ? Icon(Icons.star) : Icon(Icons.star_border),
+            icon: state.isStared == true
+                ? const Icon(Icons.star)
+                : const Icon(Icons.star_border),
             onPressed: () {
-              ★ TODO 保存処理を書くが、Viewの役割を逸脱しないよう依存関係に注意
+              notifier.changeIsStared(!state.isStared);
             },
           ),
-          */
-
           IconButton(
             color: Colors.white,
             icon: const Icon(
@@ -87,7 +88,8 @@ class ContactsViewPage extends ConsumerWidget {
                   children: <Widget>[
                     Card(
                       child: ListTile(
-                        title: Text(state.phoneNo),
+                        title:
+                            Text(state.phoneNo != "" ? state.phoneNo : "None"),
                         subtitle: const Text(
                           "PhoneNo",
                           style: TextStyle(color: Colors.black54),
@@ -100,26 +102,32 @@ class ContactsViewPage extends ConsumerWidget {
                     ),
                     Card(
                       child: ListTile(
-                        title: Text(state.address?.countryName ?? "None"),
+                        title: Text(state.address?.countryName == null ||
+                                state.address?.countryName == ""
+                            ? "None"
+                            : state.address!.countryName),
                         subtitle: const Text(
                           "Country",
                           style: TextStyle(color: Colors.black54),
                         ),
                         leading: IconButton(
-                          icon: const Icon(Icons.email, color: Colors.indigo),
+                          icon: const Icon(Icons.flag, color: Colors.indigo),
                           onPressed: () {},
                         ),
                       ),
                     ),
                     Card(
                       child: ListTile(
-                        title: Text(state.address?.zipcode ?? "None"),
+                        title: Text(state.address?.zipcode == null ||
+                                state.address?.zipcode == ""
+                            ? "None"
+                            : state.address!.zipcode),
                         subtitle: const Text(
                           "Address",
                           style: TextStyle(color: Colors.black54),
                         ),
                         leading: IconButton(
-                          icon: const Icon(Icons.share, color: Colors.indigo),
+                          icon: const Icon(Icons.home, color: Colors.indigo),
                           onPressed: () {},
                         ),
                       ),
@@ -132,7 +140,7 @@ class ContactsViewPage extends ConsumerWidget {
                           style: TextStyle(color: Colors.black54),
                         ),
                         leading: IconButton(
-                          icon: const Icon(Icons.share, color: Colors.indigo),
+                          icon: const Icon(Icons.person, color: Colors.indigo),
                           onPressed: () {},
                         ),
                       ),

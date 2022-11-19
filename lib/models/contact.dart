@@ -9,7 +9,7 @@ class Contact {
     this.phoneNo = "",
     this.gender = Gender.SelectGender,
     this.address,
-    this.isStared,
+    this.isStared = false,
     this.id,
   });
 
@@ -24,7 +24,7 @@ class Contact {
 
   final Address? address;
 
-  final bool? isStared;
+  final bool isStared;
 
   Contact copyWith({
     Id? id,
@@ -48,9 +48,9 @@ class Contact {
 class Address {
   Address({this.countryName = "", this.zipcode = ""});
 
-  final String? countryName;
+  final String countryName;
 
-  final String? zipcode;
+  final String zipcode;
 }
 
 enum Gender { Male, Female, Other, DeclineToState, SelectGender }

@@ -40,6 +40,11 @@ class ContactsListNotifier extends StateNotifier<List<Contact>> {
     );
   }
 
+  void onTapStar(Contact contact, bool isStared) {
+    _contactsAppService.saveOrUpdateContact(
+        contact: contact.copyWith(isStared: !isStared));
+  }
+
   void onTapFAB(BuildContext context, WidgetRef ref) {
     ref.read(contactDetailProvider.notifier).initContact();
     Navigator.push(

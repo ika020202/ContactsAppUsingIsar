@@ -19,7 +19,6 @@ class ContactsRepository {
         isar.contacts.where().watch(fireImmediately: true);
     watchContacts.listen((contacts) {
       watchedResults(contacts);
-
       print("Contactに$contactsの変更が入りました");
     });
   }
@@ -31,9 +30,6 @@ class ContactsRepository {
 
   // 削除
   void delete(Contact contact) async {
-    print(contact.id);
-    //isar.writeTxnSync(() => isar.contacts.delete(contact.id!));
-
     await isar.writeTxn(() async {
       final success = await isar.contacts.delete(contact.id!);
       print(success);

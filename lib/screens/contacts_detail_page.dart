@@ -7,13 +7,11 @@ import 'package:isar_contacts_sample/widgets/alertDialog_validation.dart';
 
 class ContactsDetailPage extends ConsumerWidget {
   const ContactsDetailPage({Key? key}) : super(key: key);
-  //final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(contactDetailProvider);
     final notifier = ref.watch(contactDetailProvider.notifier);
-    //final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(

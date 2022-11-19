@@ -111,7 +111,7 @@ Contact _contactDeserialize(
     gender: _ContactgenderValueEnumMap[reader.readStringOrNull(offsets[1])] ??
         Gender.SelectGender,
     id: id,
-    isStared: reader.readBoolOrNull(offsets[2]),
+    isStared: reader.readBoolOrNull(offsets[2]) ?? false,
     name: reader.readStringOrNull(offsets[3]) ?? "",
     phoneNo: reader.readStringOrNull(offsets[4]) ?? "",
   );
@@ -135,7 +135,7 @@ P _contactDeserializeProp<P>(
       return (_ContactgenderValueEnumMap[reader.readStringOrNull(offset)] ??
           Gender.SelectGender) as P;
     case 2:
-      return (reader.readBoolOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset) ?? false) as P;
     case 3:
       return (reader.readStringOrNull(offset) ?? "") as P;
     case 4:
@@ -463,24 +463,8 @@ extension ContactQueryFilter
     });
   }
 
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> isStaredIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'isStared',
-      ));
-    });
-  }
-
-  QueryBuilder<Contact, Contact, QAfterFilterCondition> isStaredIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'isStared',
-      ));
-    });
-  }
-
   QueryBuilder<Contact, Contact, QAfterFilterCondition> isStaredEqualTo(
-      bool? value) {
+      bool value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'isStared',
@@ -926,7 +910,7 @@ extension ContactQueryProperty
     });
   }
 
-  QueryBuilder<Contact, bool?, QQueryOperations> isStaredProperty() {
+  QueryBuilder<Contact, bool, QQueryOperations> isStaredProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isStared');
     });
@@ -979,18 +963,8 @@ int _addressEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.countryName;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.zipcode;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.countryName.length * 3;
+  bytesCount += 3 + object.zipcode.length * 3;
   return bytesCount;
 }
 
@@ -1011,8 +985,8 @@ Address _addressDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = Address(
-    countryName: reader.readStringOrNull(offsets[0]),
-    zipcode: reader.readStringOrNull(offsets[1]),
+    countryName: reader.readStringOrNull(offsets[0]) ?? "",
+    zipcode: reader.readStringOrNull(offsets[1]) ?? "",
   );
   return object;
 }
@@ -1025,9 +999,9 @@ P _addressDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? "") as P;
     case 1:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? "") as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1035,24 +1009,8 @@ P _addressDeserializeProp<P>(
 
 extension AddressQueryFilter
     on QueryBuilder<Address, Address, QFilterCondition> {
-  QueryBuilder<Address, Address, QAfterFilterCondition> countryNameIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'countryName',
-      ));
-    });
-  }
-
-  QueryBuilder<Address, Address, QAfterFilterCondition> countryNameIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'countryName',
-      ));
-    });
-  }
-
   QueryBuilder<Address, Address, QAfterFilterCondition> countryNameEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1065,7 +1023,7 @@ extension AddressQueryFilter
   }
 
   QueryBuilder<Address, Address, QAfterFilterCondition> countryNameGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1080,7 +1038,7 @@ extension AddressQueryFilter
   }
 
   QueryBuilder<Address, Address, QAfterFilterCondition> countryNameLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1095,8 +1053,8 @@ extension AddressQueryFilter
   }
 
   QueryBuilder<Address, Address, QAfterFilterCondition> countryNameBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1182,24 +1140,8 @@ extension AddressQueryFilter
     });
   }
 
-  QueryBuilder<Address, Address, QAfterFilterCondition> zipcodeIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'zipcode',
-      ));
-    });
-  }
-
-  QueryBuilder<Address, Address, QAfterFilterCondition> zipcodeIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'zipcode',
-      ));
-    });
-  }
-
   QueryBuilder<Address, Address, QAfterFilterCondition> zipcodeEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1212,7 +1154,7 @@ extension AddressQueryFilter
   }
 
   QueryBuilder<Address, Address, QAfterFilterCondition> zipcodeGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1227,7 +1169,7 @@ extension AddressQueryFilter
   }
 
   QueryBuilder<Address, Address, QAfterFilterCondition> zipcodeLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1242,8 +1184,8 @@ extension AddressQueryFilter
   }
 
   QueryBuilder<Address, Address, QAfterFilterCondition> zipcodeBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
