@@ -1,6 +1,24 @@
-# isar_contacts_sample
+# ContactsAppUsingIsar
 
-A new Flutter project.
+Flutterの[IsarDB](https://github.com/isar/isar)を使用した連絡先管理アプリを作成しています。
+
+# 主な目的
+- Isar＋Riverpod+ドメイン駆動開発的なプロジェクト構成　を使用したサンプルアプリや記事が恐らく一つも無いため、参考の為に作成
+- 完成後は、公式のSampleAppListに入れて貰えるようIsar開発者に交渉中
+- このアプリはFlutter中級者以上を対象に
+
+# 使用している技術や構成
+- Riverpod(StateNotifier)
+- IsarDB
+- DDD(レイヤードアーキテクチャ)
+
+# 依存関係の例
+
+
+
+
+# TodoList & Completed List
+
 
 ## Getting Started
 
