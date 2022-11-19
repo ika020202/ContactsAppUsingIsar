@@ -21,6 +21,8 @@ Flutterの[IsarDB](https://github.com/isar/isar)を使用した連絡先管理�
 
 # ScreenShots
 <img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">
+<img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">
+<img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">
 
 ![Screenshot_1668876618](https://user-images.githubusercontent.com/42883378/202862401-535691b1-bc6a-4b10-8205-76660f519f6a.png)
 ![Screenshot_1668876658](https://user-images.githubusercontent.com/42883378/202862403-ce1b4b1b-b8eb-446a-a3d6-54df589b1aa1.png)
