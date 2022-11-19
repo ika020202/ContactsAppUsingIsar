@@ -1,6 +1,8 @@
 # ContactsAppUsingIsar
 
-Flutterの[IsarDB](https://github.com/isar/isar)を使用した連絡先管理アプリを作成しています。
+レイヤードアーキテクチャ＋IsarDB＋Riverpodという構成のSampleがネット上に無かったため、参考になるかと思い記事執筆＋アプリ開発中。
+
+このアプリは、Flutterの[IsarDB](https://github.com/isar/isar)を使用した連絡先管理アプリを作成しています。
 
 # 使用している技術や構成
 - Riverpod(StateNotifier)
