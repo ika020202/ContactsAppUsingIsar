@@ -20,8 +20,7 @@ Flutterの[IsarDB](https://github.com/isar/isar)を使用した連絡先管理�
 - Widgetsをファイル分割
 
 # ScreenShots
-<img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">
-<img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">
+<img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">　<img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">
 <img src="https://user-images.githubusercontent.com/42883378/202862398-0e62fc87-a519-4d74-b7b3-cee542eee6c0.png" width="256">
 
 ![Screenshot_1668876618](https://user-images.githubusercontent.com/42883378/202862401-535691b1-bc6a-4b10-8205-76660f519f6a.png)
