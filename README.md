@@ -13,7 +13,7 @@ Flutterの[IsarDB](https://github.com/isar/isar)を使用した連絡先管理�
 - DDD(レイヤードアーキテクチャ)
 
 # 依存関係の例
-
+![relation](https://user-images.githubusercontent.com/42883378/202861865-ba1ee5f1-d2af-425e-9972-1ab39da265b5.png)
 
 
 
