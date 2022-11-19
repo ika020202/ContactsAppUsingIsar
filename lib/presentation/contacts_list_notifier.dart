@@ -7,6 +7,10 @@ import 'package:isar_contacts_sample/screens/contacts_detail_page.dart';
 
 import '../screens/contacts_view_page.dart';
 
+final isSearchProvider = StateProvider.autoDispose<bool>((ref) {
+  return false;
+});
+
 final contactsListProvider =
     StateNotifierProvider<ContactsListNotifier, List<Contact>>(
   (ref) => ContactsListNotifier(

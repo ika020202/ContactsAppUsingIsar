@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar_contacts_sample/presentation/contacts_detail_notifier.dart';
 import 'package:isar_contacts_sample/screens/contacts_detail_page.dart';
-import 'package:isar_contacts_sample/screens/contacts_list_page.dart';
 
 class ContactsViewPage extends ConsumerWidget {
   const ContactsViewPage({super.key});
@@ -44,7 +43,8 @@ class ContactsViewPage extends ConsumerWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ContactsDetailPage()),
+                MaterialPageRoute(
+                    builder: (context) => const ContactsDetailPage()),
               );
             },
           ),
@@ -55,7 +55,7 @@ class ContactsViewPage extends ConsumerWidget {
           Column(
             children: <Widget>[
               Container(
-                decoration: const BoxDecoration(color: Colors.indigo),
+                decoration: const BoxDecoration(color: Color(0xff009688)),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.33,
                 child: Column(

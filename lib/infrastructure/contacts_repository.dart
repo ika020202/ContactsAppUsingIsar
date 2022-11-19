@@ -4,7 +4,6 @@ import 'package:isar_contacts_sample/models/contact.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 
 final contactsRepoProvider = Provider((ref) => ContactsRepository());
 
@@ -17,6 +16,7 @@ class ContactsRepository {
   ) {
     Stream<List<Contact>> watchContacts =
         isar.contacts.where().watch(fireImmediately: true);
+
     watchContacts.listen((contacts) {
       watchedResults(contacts);
       print("Contactに$contactsの変更が入りました");

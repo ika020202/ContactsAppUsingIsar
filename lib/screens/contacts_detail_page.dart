@@ -15,6 +15,7 @@ class ContactsDetailPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: const Text("Add Contact"),
       ),
       body: ListView(
@@ -35,7 +36,6 @@ class ContactsDetailPage extends ConsumerWidget {
             ],
           ),
           Form(
-            //key: formKey,
             child: Column(
               children: [
                 TextFormField(
